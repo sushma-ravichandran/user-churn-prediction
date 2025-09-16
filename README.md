@@ -2,7 +2,7 @@
 
 This project was completed as part of a six-course professional certificate, applying machine learning to a real-world business problem: predicting user churn for Waze. It demonstrates end-to-end data analysis, model development, and business-oriented insights.
 
-**Complete analysis, including code and visualizations, can be found in the [Jupyter Notebook](https://github.com/your-username/waze-user-churn-prediction/blob/main/your-notebook-name.ipynb).**
+**Complete analysis, including code and visualizations, can be found in the [Jupyter Notebook](https://github.com/sushma-ravichandran/user-churn-prediction/blob/main/User%20Churn%20Prediction.ipynb).**
 
 ---
 
@@ -20,11 +20,20 @@ Churn was defined as users who uninstall or stop using the app. The objective wa
 
 ### 3. Data Understanding
 
-The analysis used a synthetic dataset provided by the course in partnership with Waze, designed to mimic real-world user activity. The dataset contains 14,999 rows and 13 columns, with each row representing a unique user. Key variables include `sessions`, `driving_days`, `driven_km_drives`, and `device`, which were used to predict the binary target variable, `label` (retained vs. churned).
+The analysis used a synthetic dataset provided by the course in partnership with Waze, designed to mimic real-world user activity. The dataset contains **14,999 rows** and **13 columns**, with each row representing a unique user. Key variables include `sessions`, `driving_days`, `driven_km_drives`, and `device`, which were used to predict the binary target variable, `label` (retained vs. churned).
 
-- **Data preparation**: Approximately **18% of the users** were found to have churned, indicating a somewhat unbalanced dataset but still workable without resampling. The data had missing values in the `label` column, which were dropped as there was no evidence of a non-random cause.
+- **Data Preparation**:  
+  - Approximately **18% of the users** were found to have churned, making the dataset somewhat unbalanced but still suitable for modeling without resampling.  
+  - Missing values in the `label` column were **dropped**, as there was no evidence of a non-random cause, and they comprised less than 5% of the dataset.
+    
+- **Exploratory Data Analysis (EDA)**:  
+  - Confirmed that **tree-based models were appropriate**, as they are resilient to the **outliers** present in several numeric columns.  
+  - Performed feature engineering including:  
+    - **Feature selection:** Dropping irrelevant features such as `ID` and duplicate features (`device` vs. `device2`).  
+    - **Feature transformation:** Encoding categorical variable (`device2`) and the target variable (`label2`) to binary format.  
+    - **Feature extraction:** Several new features were created to better capture user behavior patterns, which later contributed to the model’s predictive performance.  
 
-- **Exploratory Data Analysis (EDA)**: It was crucial for understanding the data's quality and structure before modeling. The analysis confirmed that **tree-based models were a good choice, as they are resilient to the many outliers** present in the data.
+Overall, this ensured the dataset was clean, structured, and optimized for modeling while providing insights into feature importance and data quality.
 
 ---
 
@@ -32,7 +41,7 @@ The analysis used a synthetic dataset provided by the course in partnership with
 
 To achieve maximum predictive power, two models were developed for cross-comparison: **Random Forest** and **XGBoost**. The data was split into training, validation, and test sets to ensure an unbiased selection of the champion model and a reliable estimate of future performance.
 
-* **Baseline Model (Logistic Regression):** As part of a previous course, a logistic regression model was built to serve as a simple, interpretable baseline for comparison. While it achieved a moderate overall accuracy of 82%, **its recall for the "churned" class was very low at 9%**, indicating that it failed to identify most of the at-risk users.
+* **Baseline Model (Logistic Regression):** As part of a previous course milestone, a logistic regression model was built to serve as a simple, interpretable baseline for comparison. While it achieved a moderate overall accuracy of 82%, **its recall for the "churned" class was very low at 9%**, indicating that it failed to identify most of the at-risk users. This served as a benchmark, and the focus of this project is on tree-based ensemble models (Random Forest and XGBoost), which delivered significantly stronger results.
 * **Model Performance:** On the validation set, the XGBoost model achieved a higher recall of **16.2%**, while the Random Forest model’s recall was **12%**. The XGBoost model was selected as the champion model because it performed better at identifying users who actually churned, aligning with the business objective of prioritizing recall.
 * **Feature Importance:** Feature engineering was a critical step, as five of the top ten most important features were engineered, including `km_per_hour` and `percent_sessions_in_last_month`. 
 * **Results:** The final XGBoost model achieved a **recall of 15.9%** and **accuracy of 80%** on the test data.
@@ -50,7 +59,7 @@ To achieve maximum predictive power, two models were developed for cross-compari
 ### 6. Final Deliverables
 
 For a concise, business-focused summary of this project, including key insights and recommendations with data visualizations, please see the full report below.
-* **[Project Executive Summary](https://github.com/your-username/waze-user-churn-prediction/blob/main/reports/Waze%20User%20Churn%20Executive%20Summary.pdf)**  
+* **[Project Executive Summary](https://github.com/sushma-ravichandran/user-churn-prediction/blob/main/User%20Churn%20Prediction_Executive%20summaries.pdf)**  
 
 ---
 
